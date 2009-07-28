@@ -22,5 +22,44 @@ Example
  b2.save
 
 
+DESCRIPTION
+===========
+You can read/write any data on Kai with ActiveRecord-like style.Notice that
+Kai is key-value storage,so you have to specify key by some means.Now,this plugin 
+generates key string from :id parameter.
+
+The key string is made from :id,class name and RAILS_ENV.If you want to see
+exact key string,call #key method on the object.
+
+CONFIGURATION
+=============
+
+You can specify hosts and ports as follows.
+
+1.In a enviroments/(development|test|production).rb
+ 
+ ActiveKai.servers = ['192.168.10.1:11211','192.168.10.2:11211','192.168.10.2:11211']
+
+2.In a subclass
+
+ class Book < ActiveKai
+   kai_servers ['192.168.10.1:11211','192.168.10.2:11211','192.168.10.2:11211']
+ end
+
+Notice that server setting is shared in all subclass in a application.So the way 1 
+is preferable.
+
+
+ABOUT KAI
+=========
+
+Kai (http://sourceforge.net/projects/kai/) is a key-value storage,you can read/write
+data via memcache protocol.
+
+VERSION
+=======
+
+version 0.1.0 
+
 
 Copyright (c) 2009 Masaki Sawamura, released under the MIT license
