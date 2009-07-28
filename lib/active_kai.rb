@@ -53,7 +53,7 @@ class ActiveKai
     if self.original_key.nil?
       false
     else
-      self.key == self.original_key      
+      self.key != self.original_key      
     end
   end
 
