@@ -4,7 +4,6 @@ ActiveKai
 Rails Plugin for Kai (http://sourceforge.net/projects/kai/)
 
 
-
 Example
 =======
 
@@ -82,6 +81,23 @@ KEY INDEX
  end
  b = Book.new(:name => "john",:title => "bar foo")
  puts b.key #=> "Book_development/john"
+
+
+MIGRATIONS?
+===========
+
+Kai is not RDB.It has no schema in value data.So you don't have migrate first.
+You can set any properties when you create object.
+  
+ class Drink < ActiveKai
+ end 
+
+ beer = Drink.new(:id => 1,:name => "Foo Beer",:company => "Kirin",:made_in => "japan")
+ p beer.made_in #=> "japan"
+ wine1 = Drink.new(:id => 2,:made_in => "France",:region => "bordeaux",:color => "red")
+ p wine1.region #=> "bordeaux"
+ wine2 = Drink.new(:id => 3,:some_param => [1,3,4,5],:bar_foo => { :aaa => 1,:bbb => 2} )
+ p wine2.some_param.size #=> 4
 
 
 ABOUT KAI
