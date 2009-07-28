@@ -43,14 +43,18 @@ class ActiveKai
 
   def save
     res = self.class.kai.set self.key,self,0
-    res.match(/STORED/) ? true : false
     if self.changed?
       self.class.find(self.original_key).destroy
     end
+    res.match(/STORED/) ? true : false
   end
 
   def changed?
-    self.key == self.original_key
+    if self.original_key.nil?
+      false
+    else
+      self.key == self.original_key      
+    end
   end
 
   def destroy
@@ -60,6 +64,7 @@ class ActiveKai
   def self.find(id)
     oj = self.kai.get self.key(id)
     oj.original_key = oj.key
+    oj
   end
 
   def self.kai
