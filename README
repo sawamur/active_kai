@@ -1,7 +1,7 @@
 ActiveKai
 =========
 
-Rails Plugin for Kai (http://sourceforge.net/projects/kai/)
+Rails Plugin for Kai ( http://sourceforge.net/projects/kai/ )
 
 
 Example
@@ -103,7 +103,7 @@ You can set any properties when you create object.
 ABOUT KAI
 =========
 
-Kai (http://sourceforge.net/projects/kai/) is a key-value storage,you can read/write
+Kai ( http://sourceforge.net/projects/kai/ ) is a key-value storage,you can read/write
 data via memcache protocol.
 
 VERSION
