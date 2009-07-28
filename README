@@ -8,6 +8,8 @@ Rails Plugin for Kai (http://sourceforge.net/projects/kai/)
 Example
 =======
 
+You can write model class inheriting from ActiveKai.
+
  class Book < ActiveKai
    kai_servers ['192.168.10.1:11211','192.168.10.2:11211','192.168.10.3:11211']
  end
