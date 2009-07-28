@@ -15,6 +15,10 @@ class ActiveKai
     @_kai_key_index_ = idx
   end
 
+  def self.kai_key_prefix(str)
+    @_kai_key_prefix_ = str
+  end
+
   def initialize(params)
     @params = []
     params.each do |k,v|
@@ -74,7 +78,7 @@ class ActiveKai
   end
   
   def self.prefix
-    [self,RAILS_ENV].join("_")
+    @_kai_key_prefix_ ||  [self,RAILS_ENV].join("_")
   end
 
   def key
