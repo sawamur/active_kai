@@ -86,7 +86,7 @@ KEY INDEX
 MIGRATIONS?
 ===========
 
-Kai is not RDB.It has no schema in value data.So you don't have migrate first.
+Kai is not a RDB.It has no schema in value data.So you don't have migrate first.
 You can set any properties when you create object.
   
  class Drink < ActiveKai
