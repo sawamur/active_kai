@@ -1,0 +1,22 @@
+# ActiveKai
+
+require 'memcache'
+
+class ActiveKai
+  def initialize(params)
+    params.each do |k,v|
+      self.instance_variable_set("@#{k}",v)
+      module_eval <<__EOF__
+          def self.#{K}=(val)
+              @#{K} = val
+          end
+          def self.#{k}
+              @#{K}
+          end
+      __EOF__
+    end
+  end
+
+  
+end
+
