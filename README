@@ -22,7 +22,7 @@ You can write model class inheriting from ActiveKai.
  b2.title = "Learning Erlang 2nd Ed."
  b2.save
  
- p b2.key #=> "Book_development/112345" 
+ p b2.key #=> "your_app.Book.development/112345" 
 
 
 DESCRIPTION
@@ -31,9 +31,9 @@ You can read/write any data on Kai with ActiveRecord-like style.Notice that
 Kai is key-value storage,so you have to specify key by some means.Now,this plugin 
 generates key string from :id parameter.
 
-The key is a string made from :id,class name and RAILS_ENV,so you can use string 
-value on :id as well.If you want to see exact key string,call #key method on the
-object.
+The key is a string made from :id,class name,namespace (defailt:base directory name) 
+and RAILS_ENV,so you can use string value on :id as well.If you want to see exact 
+key string,call #key method on the object.
 
 INSTALL
 =======
@@ -80,7 +80,24 @@ KEY INDEX
     kai_key_index :name
  end
  b = Book.new(:name => "john",:title => "bar foo")
- puts b.key #=> "Book_development/john"
+ puts b.key #=> "yourapp.Book.development/john"
+
+KEY NAMEPSACE
+-------------
+
+You can specify a namespace of each key.Write as follows on enviroment.rb (or 
+config/enviroment/development.rb etc)
+
+ ActiveKai.namespace = "com.yourdomain.yourapp"
+
+That namespace will be shared ALL subclass of ActiveKai.So if you set as shown
+above extact key will be;
+  
+ class City < ActiveKai
+ end
+ # if you run this code on production environment
+ tokyo = City.new(:id => 8,:name => "tokyo",:contry => "japan")
+ p tokyo.key #=> "com.yourdomain.yourapp.City.production/8"
 
 
 MIGRATIONS?
