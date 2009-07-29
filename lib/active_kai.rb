@@ -1,19 +1,12 @@
 require 'memcache'
 
 class ActiveKai
-  @@kai = nil
+  cattr_accessor :servers
+  cattr_writer :namespace
   attr_accessor :original_key
 
   def self.kai_servers(servers)
     self.servers = servers
-  end
-
-  def self.servers=(servers)
-    @@servers = servers
-  end
-
-  def self.namespace=(namespace)
-    @@namespace = namespace
   end
 
   def self.kai_key_index(idx)
@@ -73,7 +66,7 @@ class ActiveKai
   end
 
   def self.kai
-    if !@@kai.nil?
+    if defined?(@@kai) && !@@kai.nil?
       return @@kai 
     end
     if !@@servers.nil?
@@ -84,7 +77,7 @@ class ActiveKai
   end
 
   def namespace
-    self.class.namespace
+    self.class.namespace 
   end
 
   def self.namespace
@@ -99,7 +92,7 @@ class ActiveKai
     if !@_kai_key_prefix_.nil?
       @_kai_key_prefix_
     else
-      [self.namespace,self,RAILS_ENV].join(".")
+      [self,RAILS_ENV].join(".")
     end
   end
 
@@ -108,11 +101,11 @@ class ActiveKai
     if v.nil?
       raise
     end
-    prefix + "/" +  v.to_s
+    [namespace,prefix].join(".") + "/" +  v.to_s
   end
 
   def self.key(id)
-    prefix + "/" + id.to_s
+    [namespace,prefix].join(".") + "/" + id.to_s
   end
 
   def self.key_index
