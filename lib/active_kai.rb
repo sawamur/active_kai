@@ -3,12 +3,17 @@ require 'memcache'
 class ActiveKai
   @@kai = nil
   attr_accessor :original_key
+
   def self.kai_servers(servers)
     self.servers = servers
   end
 
   def self.servers=(servers)
     @@servers = servers
+  end
+
+  def self.namespace=(namespace)
+    @@namespace = namespace
   end
 
   def self.kai_key_index(idx)
@@ -78,12 +83,24 @@ class ActiveKai
     end
   end
 
+  def namespace
+    self.class.namespace
+  end
+
+  def self.namespace
+    defined?(@@namespace) ? @@namespace : File.basename(RAILS_ROOT)
+  end
+
   def prefix
     self.class.prefix
   end
   
   def self.prefix
-    @_kai_key_prefix_ ||  [self,RAILS_ENV].join("_")
+    if !@_kai_key_prefix_.nil?
+      @_kai_key_prefix_
+    else
+      [self.namespace,self,RAILS_ENV].join(".")
+    end
   end
 
   def key
