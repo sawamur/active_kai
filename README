@@ -38,7 +38,7 @@ object.
 INSTALL
 =======
 
- script/plugin install git://github.com/sawamur/ActiveKai.git
+ script/plugin install git://github.com/sawamur/active_kai.git
 
 
 CONFIGURATION
