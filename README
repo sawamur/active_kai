@@ -4,7 +4,7 @@ ActiveKai
 Rails Plugin for Kai ( http://sourceforge.net/projects/kai/ )
 
 
-Example
+EXSAMPLE
 =======
 
 You can write model class inheriting from ActiveKai.
