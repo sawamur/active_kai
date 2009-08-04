@@ -37,6 +37,7 @@ class ActiveKai
         return instance_variable_get("@#{pr}")
       end
     end
+    super
   end
 
   def save
