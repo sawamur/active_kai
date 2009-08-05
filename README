@@ -126,7 +126,7 @@ data via memcache protocol.
 VERSION
 =======
 
-version 0.1.1
+version 0.1.2
 
 
 Copyright (c) 2009 Masaki Sawamura, released under the MIT license
