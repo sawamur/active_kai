@@ -62,6 +62,7 @@ class ActiveKai
 
   def self.find(id)
     oj = self.kai.get self.key(id)
+    return if oj.nil?
     oj.original_key = oj.key
     oj
   end
